@@ -18,6 +18,9 @@ package labs.pm.data;
 
 import java.math.BigDecimal;
 import static java.math.RoundingMode.HALF_UP;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 import static labs.pm.data.Rating.NOT_RATED;
 
 /**
@@ -31,7 +34,7 @@ import static labs.pm.data.Rating.NOT_RATED;
  * @version 4.0
  * @author rlop
  */
-public class Product {
+public abstract class Product {
     
     /**
      * A constant that defines a {@link java.math.BigDecimal} value
@@ -86,8 +89,39 @@ public class Product {
         return rating;
     }
     
-    public Product applyRating(Rating newRating) {
-        return new Product(this.id, this.name, this.price, newRating);
+    public abstract Product applyRating(Rating newRating);
+    
+    /**
+     * Get the value of the best before date for the product
+     *
+     * @return the value of bestBefore
+     */
+    public LocalDate getBestBefore() {
+        return LocalDate.now();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && getClass() == obj.getClass()) {
+            final Product other = (Product) obj;
+            return this.id == other.id && Objects.equals(this.name, other.name);
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return id + ", " + name + ", " + price + ", " +getDiscount() + ", " + rating.getStars() + ", " + getBestBefore();
     }
     
 }

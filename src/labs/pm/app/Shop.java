@@ -18,6 +18,7 @@ package labs.pm.app;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Locale;
 import labs.pm.data.Drink;
 import labs.pm.data.Food;
 import labs.pm.data.Product;
@@ -36,7 +37,8 @@ public class Shop {
      */
     public static void main(String[] args) {
         // -link https://docs.oracle.com/en/java/javase/11/docs/api/ -J-Dhttps.proxyHost=ges-proxy-oci -J Dhttps.proxyPort=3128
-        ProductManager pm = new ProductManager();
+        ProductManager pm = new ProductManager(Locale.UK);
+        
         Product p1 = pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.THREE_STAR);
         Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
         Product p3 = pm.createProduct(103, "Cake", BigDecimal.valueOf(1.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));

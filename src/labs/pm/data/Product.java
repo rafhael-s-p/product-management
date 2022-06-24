@@ -34,7 +34,7 @@ import static labs.pm.data.Rating.NOT_RATED;
  * @version 4.0
  * @author rlop
  */
-public abstract class Product {
+public abstract class Product implements Rateable<Product> {
     
     /**
      * A constant that defines a {@link java.math.BigDecimal} value
@@ -80,7 +80,8 @@ public abstract class Product {
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
-
+    
+    @Override
     public Rating getRating() {
         return rating;
     }

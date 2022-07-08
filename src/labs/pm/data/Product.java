@@ -19,7 +19,6 @@ package labs.pm.data;
 import java.math.BigDecimal;
 import static java.math.RoundingMode.HALF_UP;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import static labs.pm.data.Rating.NOT_RATED;
 
@@ -111,7 +110,7 @@ public abstract class Product implements Rateable<Product> {
         }
         if (obj != null && getClass() == obj.getClass()) {
             final Product other = (Product) obj;
-            return this.id == other.id && Objects.equals(this.name, other.name);
+            return this.id == other.id; //&& Objects.equals(this.name, other.name);
         }
         return false;
     }

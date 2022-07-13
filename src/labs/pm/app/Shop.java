@@ -34,7 +34,7 @@ public class Shop {
      */
     public static void main(String[] args) {
         // -link https://docs.oracle.com/en/java/javase/11/docs/api/ -J-Dhttps.proxyHost=ges-proxy-oci -J Dhttps.proxyPort=3128
-        ProductManager pm = new ProductManager(Locale.UK);
+        ProductManager pm = new ProductManager("en-GB");
         
         pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);
@@ -52,6 +52,8 @@ public class Shop {
         pm.reviewProduct(102, Rating.ONE_STAR, "Where is the milk?");
         pm.reviewProduct(102, Rating.FIVE_STAR, "It's perfect with ten spoons of sugar!");
         pm.printProductReport(102);
+        
+        pm.changeLocale("pt-BR");
         
         pm.createProduct(103, "Cake", BigDecimal.valueOf(3.99), Rating.NOT_RATED);
         pm.reviewProduct(103, Rating.FIVE_STAR, "Very nice cake");

@@ -37,26 +37,33 @@ public class Shop {
         // -link https://docs.oracle.com/en/java/javase/11/docs/api/ -J-Dhttps.proxyHost=ges-proxy-oci -J Dhttps.proxyPort=3128
         ProductManager pm = new ProductManager("en-GB");
         
+        pm.createProduct(164, "Kombucha", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+        pm.reviewProduct(164, Rating.TWO_STAR, "Looks like tea but is it?");
+        pm.reviewProduct(164, Rating.FOUR_STAR, "Fine tea");
+        pm.reviewProduct(164, Rating.FOUR_STAR, "This is not tea");
+        pm.reviewProduct(164, Rating.FIVE_STAR, "Perfect!");
+        pm.printProductReport(164);
+        
         //pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        pm.parseProduct("D, 101, Tea, 1.99, 0, 2022-09-19");
+        //pm.parseProduct("D, 101, Tea, 1.99, 0, 2022-09-19");
         //pm.parseProduct("D, 101, Tea, 1.99, 0");
-        pm.printProductReport(101);
+        //pm.printProductReport(101);
         //pm.reviewProduct(101, Rating.FOUR_STAR, "Nice hot cup of tea");
         //pm.reviewProduct(101, Rating.TWO_STAR, "Rather weak tea");
         //pm.reviewProduct(101, Rating.FOUR_STAR, "Fine tea");
         //pm.reviewProduct(101, Rating.FOUR_STAR, "Good tea");
         //pm.reviewProduct(101, Rating.FIVE_STAR, "Perfect tea");
         //pm.reviewProduct(101, Rating.THREE_STAR, "Just add some lemon");
-        pm.parseReview("101, 4, Nice hot cup of tea");
-        pm.parseReview("101, 2, Rather weak tea");
-        pm.parseReview("101, 4, Fine tea");
-        pm.parseReview("101, 4, Good tea");
-        pm.parseReview("101, 5, Perfect tea");
-        pm.parseReview("101, 3, Just add some lemon");
+        //pm.parseReview("101, 4, Nice hot cup of tea");
+        //pm.parseReview("101, 2, Rather weak tea");
+        //pm.parseReview("101, 4, Fine tea");
+        //pm.parseReview("101, 4, Good tea");
+        //pm.parseReview("101, 5, Perfect tea");
+        //pm.parseReview("101, 3, Just add some lemon");
         pm.printProductReport(101);
         
-        pm.parseProduct("F, 103, Cake, 3.99, 0, 2022-09-19");
-        pm.printProductReport(103);
+        //pm.parseProduct("F, 103, Cake, 3.99, 0, 2022-09-19");
+        //pm.printProductReport(103);
         //pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         //pm.reviewProduct(102, Rating.THREE_STAR, "Coffee was ok");
         //pm.reviewProduct(102, Rating.ONE_STAR, "Where is the milk?");
@@ -88,12 +95,12 @@ public class Shop {
         //pm.reviewProduct(106, Rating.ONE_STAR, "I don't get it");
         //pm.printProductReport(106);
         
-        //Comparator<Product> ratingSorter = (p1, p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
+        Comparator<Product> ratingSorter = (p1, p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
         //Comparator<Product> priceSorter = (p1, p2) -> p2.getPrice().compareTo(p1.getPrice());
         
-        //pm.printProducts(p -> p.getPrice().floatValue() < 2, ratingSorter);
+        pm.printProducts(p -> p.getPrice().floatValue() < 2, ratingSorter);
         
-        //pm.getDiscounts().forEach((rating, discount) -> System.out.println(rating + "\t" + discount));
+        pm.getDiscounts().forEach((rating, discount) -> System.out.println(rating + "\t" + discount));
 
     }
     

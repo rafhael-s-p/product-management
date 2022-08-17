@@ -31,8 +31,8 @@ public class Shop {
     public static void main(String[] args) {
         // -link https://docs.oracle.com/en/java/javase/11/docs/api/ -J-Dhttps.proxyHost=ges-proxy-oci -J Dhttps.proxyPort=3128
         ProductManager pm = ProductManager.getInstance();
-        pm.printProductReport(101, "en-GB");
-        pm.printProductReport(103, "en-GB");
+        pm.printProductReport(101, "en-GB", "103");
+        pm.printProductReport(103, "en-GB", "101");
     }
     
 }

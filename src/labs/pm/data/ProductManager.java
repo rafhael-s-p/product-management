@@ -29,7 +29,6 @@ import java.nio.file.StandardOpenOption;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -66,10 +65,7 @@ public class ProductManager {
     private final Path tmpFolder = Path.of(config.getString("tmp.folder"));
     private final static Map<String, ResourceFormatter> formatters = Map.of(
             "en-GB", new ResourceFormatter(Locale.UK),
-            "en-US", new ResourceFormatter(Locale.US),
             "fr-FR", new ResourceFormatter(Locale.FRANCE),
-            "ru-RU", new ResourceFormatter(new Locale("ru", "RU")),
-            "zh-CN", new ResourceFormatter(Locale.CHINA),
             "pt-BR", new ResourceFormatter(new Locale("pt", "BR"))
     );
     private static final Logger logger = Logger.getLogger(ProductManager.class.getName());
@@ -82,17 +78,11 @@ public class ProductManager {
         return pm;
     }
 
-    //public ProductManager(Locale locale) {
-    //    this(locale.toLanguageTag());
-    //}
+
     private ProductManager() {
-        //changeLocale(languageTag);
         loadAllData();
     }
 
-    //public void changeLocale(String languageTag) {
-    //    formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
-    //}
     public static Set<String> getSupportedLocales() {
         return formatters.keySet();
     }
@@ -332,7 +322,7 @@ public class ProductManager {
 
     public Map<String, String> getDiscounts(String languageTag) {
         try {
-            readLock.unlock();
+            readLock.lock();
             ResourceFormatter formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
             return products.keySet()
                     .stream()

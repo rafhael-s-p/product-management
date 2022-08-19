@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import static java.math.RoundingMode.HALF_UP;
 import java.time.LocalDate;
-import java.util.Objects;
 import static labs.pm.data.Rating.NOT_RATED;
 
 /**
